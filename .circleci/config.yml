@@ -1,0 +1,17 @@
+version: 2.1
+
+orbs:
+  win: circleci/windows@2.2.0
+
+jobs:
+  build:
+    executor:
+      name: win/default
+    steps:
+      - checkout
+      - run:
+          name: Restoring Packages
+          command: nuget restore .\ReportsAPI\ReportsAPI.sln
+      - run:
+          name: Build
+          command: msbuild .\ReportsAPI\ReportsAPI.sln
